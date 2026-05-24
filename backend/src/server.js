@@ -16,12 +16,17 @@ const app = express();
 
 //req.auth will be available in all routes after this middleware
 app.use(express.json());
+
+
+app.use(
+    "/api/inngest",
+    serve({ 
+        client: inngest, 
+        functions })
+);
+
+
 app.use(clerkMiddleware());
-
-
-app.use("/api/inngest", serve({ client: inngest, functions }));
-
-
 
 app.get("/", (req, res) => {
     res.send("Hello  World");
